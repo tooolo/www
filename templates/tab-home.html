@@ -1,0 +1,92 @@
+<ion-view >
+	
+	
+	<ion-header-bar class="  item-input-inset">
+				<div style="width: 1rem; height: 1rem; margin-right: 0.3rem;"><img width="100%" ; height="auto" src="img/person_touxiang.png"  menu-toggle="left"/></div>
+				<label class="item-input-wrapper">
+  				<input type="text"  placeholder="搜索" ng-model="searchText"/>
+  			</label>
+				<button class="button  icon ion-search button-small" ng-click="homeSearch()"></button>
+	</ion-header-bar>
+	<ion-content>
+		<style>
+			.ion-record {
+				color: #fff;
+			}
+			.height {
+				 height:3rem;
+			}
+		</style>
+		<div class="list">
+			<!--轮播图-->
+			<ion-slide-box class='box' auto-play='true' slide-interval='2000' does-continue='true'  delegate-handle="slideimgs">
+				<ion-slide ng-repeat="obj in lunbodata">
+					<a href="#/tab/home/{{obj.ID}}">
+						<img ng-src='{{obj.Cpic}}' width="100%" height="100%" />
+					</a>
+					
+				</ion-slide>
+			</ion-slide-box>
+
+			<!--好评榜-->
+			<div class="list">
+				<div class="item ">
+					<p style="float: right;">
+						<a class="more" href="#">更多<i class="icon ion-chevron-right"></i></a>
+					</p>
+					<h2>好评榜</h2>
+					
+				</div>
+				<div class="item item-body">
+				<div class="row" ng-repeat="obj in homegooddata">
+					
+					<div class="col col-50" ng-repeat="new in obj">
+						<a href="#/tab/home/{{new.ID}}">
+							<img class="full-image height" ng-src="{{new.Cpic}}">
+							<p class="text-center"><b>{{new.Cname}}</b></p>
+							
+						</a>
+					</div>
+				
+				</div>
+				</div>
+			</div>
+			
+			<!--最新课程-->
+			<div class="list">
+				<div class="item">
+					<p style="float: right;">
+						<a class="more" href="#">更多<i class="icon ion-chevron-right"></i></a>
+					</p>
+					<h2>最新课程</h2>
+				</div>
+				<div class="item item-body">
+				<div class="row" ng-repeat="obj in homenewdata">
+					<div class="col col-50" ng-repeat="new in obj">
+						<a href="#/tab/home/{{new.ID}}">
+							<img class="full-image height"  ng-src="{{new.Cpic}}">
+							<p><b>{{new.Cname}}</b></p>
+							<p>{{new.Cdescribe}}</p>
+						</a>
+					</div>
+				</div>
+				</div>
+			</div>
+			
+			
+			
+			<!--猜你喜欢-->
+			<div class="list">
+				<div class="item">
+					<h2>猜你喜欢</h2>
+				</div>
+				  <a class="item item-thumbnail-left like_list" href="#/tab/home/{{like.ID}}" ng-repeat="like in homelikedata">
+    			  <img style="max-width: 120px;" ng-src="{{like.Cpic}}">
+     				<h2>{{like.Cname}}</h2>
+     				<p>{{like.Cdescribe}}</p>
+    			</a>
+
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

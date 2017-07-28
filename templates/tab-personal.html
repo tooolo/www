@@ -1,0 +1,22 @@
+<ion-nav-view style="background: url(img/login_bg.png) no-repeat ; width: 100%; background-size: cover;">
+  <ion-content  >
+  	
+    <div class="text-center" style="width: 90%; margin: auto;">
+    	<img src="img/login_logo.png" class="login_logo"/>
+    	<div class="list list-inset">
+			  <label class="item item-input">
+			    <input type="text" placeholder="用户名" ng-model="loginuser.name">
+			  </label>
+			  <label class="item item-input">
+			    <input type="password" placeholder="密码" ng-model="loginuser.passwor">
+			  </label>
+			</div>
+			<div style="padding: 0 10px 0;">
+			  <button class="button button-block button-positive" ng-click="doEnter()" style="font-size: 20px;">登&ensp;录</button>
+			  </div>
+			  <br />
+			  <a class="register_font" href="#/tab/register">注册</a>
+			  <a class="forget" href="">忘记密码</a>
+    </div>
+  </ion-content>
+</ion-nav-view>

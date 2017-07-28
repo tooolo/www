@@ -1,0 +1,43 @@
+
+<ion-view view-title="课程列表" hide-nav-bar="true">	
+	<ion-header-bar class=' item-input-inset'>
+    <label class="item-input-wrapper">
+    	<span class="icon ion-search placeholder-icon"></span>
+      <input type="text" placeholder="请输入关键词" ng-model="searchInputText" ng-keyup="myKeyup($event)">
+    </label>    
+	</ion-header-bar>
+
+	<ul class="row item boder_down">
+  		<li class="col col-50 text-center" ng-click="CourseList()" ng-style="lcolor">课程列表
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  		<li class="col col-50 text-center left_boder" ng-click="Price()" ng-style="pcolor">价格
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  </ul>
+  <ion-content style="margin-top: 1.2rem;">
+  	<div class="list">  	 	
+  	
+  	<ul class="item item-divider demo_list" ng-hide='boolCourseList'>
+  			<li class="demo" ng-repeat="data in courseListBtns" ng-click="courseSerch('',{{data.sysId}},'')">{{data.title}}</li>
+  	</ul>
+  	
+  	<div class="item item-divider demo_price" ng-repeat="data in priceBtns" ng-hide="boolprice">
+  			{{data.btnName}}
+  	</div>
+  	
+  	<!--内容-->
+				<a class="item item-thumbnail-left like_list" href="#/tab/home/{{new.ID}}" ng-repeat="list in courselists">
+    			  <img style="max-width: 120px;" ng-src="{{list.Cpic}}">
+     				<h2>{{list.Cname}}</h2>
+     				<p>{{list.Cdescribe}}</p>
+    			</a>
+    			<p class="item text-center ion-alert-circled assertive" ng-show="notMore" ng-click="getCourseList()"> 没有更多内容了</p>
+</div>
+		
+		<!--上拉加载-->
+		<ion-infinite-scroll on-infinite = "doInfinite()" immediate-check = "false" ng-if="moredata">
+				
+		</ion-infinite-scroll>
+  </ion-content>
+</ion-view>

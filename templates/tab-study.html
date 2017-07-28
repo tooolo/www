@@ -1,0 +1,138 @@
+<ion-view  hide-tabs="true">
+	<div class="mask" ng-show="plogin">请<a href="#/tab/personal">登录</a></div>
+	<div class="video-buy" ng-show="pbuy">请在下方购买</div>
+	<video  controls loop ng-src="{{Vurl}}" width="100%" height="auto"></video>
+	
+	<ul class="row item boder_down"  style="top: -3px; background: #CCCCCC;" >
+  		<li class="col col-50 text-center" ng-click="catalog()" ng-style="ccolor">目录
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  		<li class="col col-50 text-center left_boder" ng-click="detail()" ng-style="dcolor">详情
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  	</ul>
+</div>
+<ion-content style='margin-top: 7.2rem; margin-bottom: 1.4rem;'>
+	<style>
+		.discuss_text {
+			height: 300px;
+			resize: none;
+		}
+		.num_impose {
+			float: right;
+			color: #cccc;
+			margin-top: 15px;
+			margin-right: 5px;
+		}
+		.discuss_sub {
+			width: 130px;
+			margin:50px auto;
+		}
+		.catalog_title {
+			display: inline-block;
+			width: 170px;
+			text-overflow:ellipsis;
+			white-space:nowrap;
+
+		}
+		.catalog_text {
+			margin: auto;
+			height: 50px; 
+			line-height: 50px;
+			 width: 300px;
+		}
+		.catalog_text i {
+			position: relative;
+			top: -20px;
+		}
+		.mask {
+			position: absolute;
+			width: 100%;
+			height: 5.96rem;
+			z-index: 555;
+			background: black;
+			opacity: .7;
+			color: white;
+			text-align: center;
+			line-height: 5.96rem;
+			font-size: 18px;
+		}
+	  .video-buy{
+	  	position: absolute;
+			width: 100%;
+			height: 5.96rem;
+			z-index: 555;
+			background: black;
+			opacity: .7;
+			color: white;
+			text-align: center;
+			line-height: 5.96rem;
+			font-size: 18px;
+	  }
+
+	</style>
+	<!--目录列表-->
+	<div class="list" ng-show = 'boolCatalog' ng-repeat="study in studymulu">
+		<div class="item" >
+			<b>{{study.CDname}}</b>
+		</div>
+		
+		<div class="item">
+			<div class="catalog_text" ng-repeat="vdetail in study.Vlist" ng-click="play(vdetail.ID)">
+			<i class="icon ion-android-radio-button-off"></i>			
+			<p class="catalog_title">{{vdetail.Vname}}</p>
+			<span class="item-note">{{vdetail.Vtime}}分钟</span>
+			</div>			
+		</div>							
+	</div>
+	<!--详情列表-->
+	<div class="list" ng-show = 'boolDetail'>
+		<div class="item">
+			<b>评价</b>
+		</div>		
+			 <div class="item item-avatar" ng-repeat="assess in assesslist">
+			 	<img src="img/study_tx.jpg">
+			   <span style="text-align: left;">{{assess.UserId}}</span>
+			    <span style="float: right;padding-right: 2.5rem;">{{assess.evaluate}}:</span>
+			    <p>{{assess.createAt}}</p>
+			    
+			 </div>
+			 
+	</div>
+</ion-content>
+
+<div class="tabs tabs-icon-top" ng-show="tabShow">
+  <a class="tab-item" ng-click="showModal()">
+  	<i class="icon ion-compose"></i>
+     评价
+  </a>
+  <a class="tab-item" id="collect" ng-click="collect()">
+    <i class="icon ion-ios-star-outline"></i>
+    {{shouc}}
+  </a>
+  <a class="tab-item" id="buy" ng-click="payGo()">
+  	<i class="icon ion-ios-download-outline"></i>
+    {{goum}}
+  </a>
+</div>
+
+<script id="modal.html" type="text/ng-template">
+	<ion-modal-view>
+		<ion-header-bar class='bar-positive'>
+			<h1 class="title">写评论</h1>
+			<button class="button button-clear" ng-click='modal.hide()'>关闭</button>
+		</ion-header-bar>
+		<ion-content>
+			<div class="list list-inset text-center">
+				<div class="item item-input" ><textarea class="discuss_text" placeholder="吐槽、表扬、鼓励......想说啥就说啥！"></textarea></div>
+				<p class="num_impose">300</p>
+				<p class="discuss_sub">
+					<button class="button button-positive button-large button-block" ng-click="promp()">提交</button>
+				</p>
+				
+			</div>
+			
+</ion-content>
+	</ion-modal-view>
+</script>
+</ion-view>

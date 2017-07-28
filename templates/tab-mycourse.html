@@ -1,0 +1,85 @@
+ <ion-header-bar>
+     
+      	<h1 class="title">我的课程</h1>
+      <div class="buttons">
+        <button class="button button-positive"
+          ng-click="data.showDelete = !data.showDelete; data.showReorder = false" ng-show="boolCollect">编辑</button>
+      </div>
+    </ion-header-bar>
+
+  	<style>
+  		#mengb{
+  			width: 100%;
+  			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999;
+			background:#E0E0E0;
+			opacity: 0.7;
+			text-align: center;
+			line-height: 13rem;
+			font-size: 0.8rem;
+			font-weight: bold;
+			}
+  	</style>
+    <ion-content>
+    	
+<ul class="row item boder_down" >
+  		<li class="col col-50 text-center" ng-click="myCourse()" ng-style="mcolor">我的课程
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  		<li class="col col-50 text-center left_boder" ng-click="collectCourse()" ng-style="ccolor">收藏课程
+  		<i class=" icon-right ion-chevron-down"></i>
+  		</li>
+  	</ul>
+      
+        
+      <!--我的课程-->
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder" ng-show="boolMycourse">
+
+        <ion-item ng-repeat="item in itemFir" item="item"
+                 href="#/item/{{item.Id}}" class="item-remove-animate  item-thumbnail-left ">
+                  
+    			  <img style="max-width: 120px;" ng-src="{{item.Cpic}}">
+    			  <div style="margin-left: 44px; margin-top: 10px;">
+     				<h2>{{item.Cname}}</h2>
+     				<h3>{{item.Cprice}}{{item.Cdescribe}}</h3>
+    				</div>                
+          
+        </ion-item>
+         <!--蒙版-->
+      <div id="mengb" ng-show="hideList">
+      	请<a href="#tab/personal">登录</a>
+      </div> 
+        
+      </ion-list>
+      
+      <!--课程收藏-->
+      
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder" ng-show="boolCollect">
+
+        <ion-item ng-repeat="item in itemSec"
+                  item="item"
+                  href="#/item/{{item.Id}}" class="item-remove-animate  item-thumbnail-left ">
+                  
+    			  <img style="max-width: 120px;" ng-src="{{item.Cpic}}">
+    			  <div style="margin-left: 44px; margin-top: 10px;">
+     				<h2>{{item.Cname}}</h2>
+     				<h3>{{item.Cprice}}{{item.Cdescribe}}</h3>
+    				</div>
+          <ion-delete-button class="ion-minus-circled" 
+                             ng-click="onItemDelete(item)">
+          </ion-delete-button>
+          
+          <ion-option-button class="button-calm"
+                             ng-click="share(item)">
+            	分享
+          </ion-option-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        </ion-item>
+
+      </ion-list>
+
+    </ion-content>
+
